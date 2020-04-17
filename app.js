@@ -16,24 +16,24 @@ const render = require("./lib/htmlRenderer");
 const GeneralQuestion = [
     {
         type: "input",
-        message: "Enter the ${postion}'s name:",
+        message: "Enter the ${role}'s name:",
         name: "name"
     },
     {
         type: "number",
-        message: "Enter ${postion}'s ID:",
+        message: "Enter ${role}'s ID:",
         name: "id"
     },
     {
         type: "input",
-        message: "Enter the ${postion}'s email:",
+        message: "Enter the ${role}'s email:",
         name: "email"
     }
 ]
 const NewEployee = [];
-function newEployee() {
-    const postion = "";
-    if (postion === "manage") {
+function NewEmployee() {
+    const role = "";
+    if (role === "manage") {
         return inquirer
             .prompt([
                 ...GeneralQuestion,
@@ -62,7 +62,7 @@ function newEployee() {
             });
 
     }
-    else if (position === "engineer") {
+    else if (role === "engineer") {
         return inquirer
             .prompt([
                 ...GeneralQuestion,
@@ -91,7 +91,7 @@ function newEployee() {
             });
     }
 
-    else (position === "intern") {
+    else (role === "intern") {
         return inquirer
             .prompt([
                 ...GeneralQuestion,
@@ -124,6 +124,7 @@ function newEployee() {
 // After the user has input all employees desired, call the `render` function (required
 // above) and pass in an array containing all employee objects; the `render` function will
 // generate and return a block of HTML including templated divs for each employee!
+const NewTeam = render(newEmployees)
 
 // After you have your html, you're now ready to create an HTML file using the HTML
 // returned from the `render` function. Now write it to a file named `team.html` in the
