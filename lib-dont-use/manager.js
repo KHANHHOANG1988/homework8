@@ -16,4 +16,4 @@ class Manager {
 }
 
 //export so this class can be inclulded in other files
-module.exports = Manager;// TODO: Write code to define and export the Manager class. HINT: This class should inherit from Employee.
+module.exports = Manager;
