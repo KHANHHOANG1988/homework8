@@ -15,61 +15,30 @@ const render = require("./lib/htmlRenderer");
 // and to create objects for each team member (using the correct classes as blueprints!)
 
 const NewEmployees = [];
-GetEmployees();
-const GeneralQuestion = [
-    {
-        type: "input",
-        message: "Enter the employee's name:",
-        name: "name"
-    },
-    {
-        type: "number",
-        message: "Enter employee's ID:",
-        name: "id"
-    },
-    {
-        type: "input",
-        message: "Enter the employee's email:",
-        name: "email"
-    }
-]
-async function promptrole() {
-    await GetEmployees();
-    return inquirer
-        .prompt({
-            type: "list",
-            message: "Which role would you like to add?",
-            name: "role",
-            choices: [
-                "Manager",
-                "Engineer",
-                "Intern",
+// GetEmployees();
 
-            ]
-        })
-}
+// TeamMember()
 
-function GetEmployees() {
-    const role = promptrole();
+async function TeamMember() {
+    const {role} = await promptrole();
     if (role === "Manager") {
         return inquirer
             .prompt([
-                ...GeneralQuestion,
-                // {
-                //     type: "input",
-                //     message: "Enter the manager's name:",
-                //     name: "name"
-                // },
-                // {
-                //     type: "number",
-                //     message: "Enter the manager's ID:",
-                //     name: "id"
-                // },
-                // {
-                //     type: "input",
-                //     message: "Enter the manager's email:",
-                //     name: "email"
-                // },
+                {
+                    type: "input",
+                    message: "Enter the manager's name:",
+                    name: "name"
+                },
+                {
+                    type: "number",
+                    message: "Enter the manager's ID:",
+                    name: "id"
+                },
+                {
+                    type: "input",
+                    message: "Enter the manager's email:",
+                    name: "email"
+                },
                 {
                     type: "number",
                     message: "Enter the manager's office number:",
@@ -77,28 +46,29 @@ function GetEmployees() {
                 }
             ]).then(function ({ name, id, email, github }) {
                 NewEmployees.push(new Manager(name, id, email, github));
-                return GetEmployees();
-            }) 
+                return TeamMember();
+            });
 
-    } else if (role === "Mangineer") {
+    };
+
+    if (role === "Engineer") {
         return inquirer
             .prompt([
-                ...GeneralQuestion,
-                // {
-                //     type: "input",
-                //     message: "Enter the engineer's name:",
-                //     name: "name"
-                // },
-                // {
-                //     type: "number",
-                //     message: "Enter the engineer's ID:",
-                //     name: "id"
-                // },
-                // {
-                //     type: "input",
-                //     message: "Enter the engineer's email:",
-                //     name: "email"
-                // },
+                {
+                    type: "input",
+                    message: "Enter the engineer's name:",
+                    name: "name"
+                },
+                {
+                    type: "number",
+                    message: "Enter the engineer's ID:",
+                    name: "id"
+                },
+                {
+                    type: "input",
+                    message: "Enter the engineer's email:",
+                    name: "email"
+                },
                 {
                     type: "input",
                     message: "Enter the engineer's github username:",
@@ -106,27 +76,28 @@ function GetEmployees() {
                 }
             ]).then(function ({ name, id, email, github }) {
                 NewEmployees.push(new Engineer(name, id, email, github));
-                return GetEmployees();
+                return TeamMember();
             });
-    } else if (role === "Intern") {
+
+    };
+    if (role === "Intern") {
         return inquirer
             .prompt([
-                ...GeneralQuestion,
-                // {
-                //     type: "input",
-                //     message: "Enter the intern's name:",
-                //     name: "name"
-                // },
-                // {
-                //     type: "number",
-                //     message: "Enter the intern's ID:",
-                //     name: "id"
-                // },
-                // {
-                //     type: "input",
-                //     message: "Enter the intern's email:",
-                //     name: "email"
-                // },
+                {
+                    type: "input",
+                    message: "Enter the intern's name:",
+                    name: "name"
+                },
+                {
+                    type: "number",
+                    message: "Enter the intern's ID:",
+                    name: "id"
+                },
+                {
+                    type: "input",
+                    message: "Enter the intern's email:",
+                    name: "email"
+                },
                 {
                     type: "input",
                     message: "Enter the intern's school:",
@@ -134,51 +105,67 @@ function GetEmployees() {
                 }
             ]).then(function ({ name, id, email, school }) {
                 NewEmployees.push(new Intern(name, id, email, school));
-                return GetEmployees();
+                return TeamMember();
             }) 
-    } else {
-        return NewEmployees;
+        } else {return NewEmployees;}
     }
-};
-function promptrole() {
-    return inquirer
-        .prompt({
-            type: "list",
-            message: "Which role would you like to add?",
-            name: "role",
-            choices: [
-                "Manager",
-                "Engineer",
-                "Intern",
 
-            ]
-        })
-}
+    function promptrole() {
+        return inquirer
+            .prompt({
+                type: "list",
+                message: "Which role would you like to add?",
+                name: "role",
+                choices: [
+                    "Manager",
+                    "Engineer",
+                    "Intern",
+                    "No more member to add"
+                ]
+                // }).then(function (data) {
+                //     console.log(data);
+                //     if (data.role === "Manager") {
+                //         newManager();
+                //     } else if (data.role === "Engineer") {
+                //         newEngineer();
+                //     }
+                //     else {
+                //         newIntern();
+                //     }
+                // });
 
+            });
+        };
+init();
+async function init(){
+    const newTeam = [];
+    const teamMembers = await TeamMember();
+    newTeam.push(...teamMembers)
+    
+    
+// // After the user has input all employees desired, call the `render` function (required
+// // above) and pass in an array containing all employee objects; the `render` function will
+// // generate and return a block of HTML including templated divs for each employee!
+const Team = await render(newTeam);
 
-// After the user has input all employees desired, call the `render` function (required
-// above) and pass in an array containing all employee objects; the `render` function will
-// generate and return a block of HTML including templated divs for each employee!
-const Team = render(NewEmployees);
-
-// After you have your html, you're now ready to create an HTML file using the HTML
-// returned from the `render` function. Now write it to a file named `team.html` in the
-// `output` folder. You can use the variable `outputPath` above target this location.
-// Hint: you may need to check if the `output` folder exists and create it if it
-// does not.
+// // After you have your html, you're now ready to create an HTML file using the HTML
+// // returned from the `render` function. Now write it to a file named `team.html` in the
+// // `output` folder. You can use the variable `outputPath` above target this location.
+// // Hint: you may need to check if the `output` folder exists and create it if it
+// // does not.
 fs.writeFile(outputPath, Team, function (err) {
     if (err) {
         console.log(err);
     }
     console.log("team.html has been created")
 });
-
-// HINT: each employee type (manager, engineer, or intern) has slightly different
-// information; write your code to ask different questions via inquirer depending on
-// employee type.
+}
+// // // HINT: each employee type (manager, engineer, or intern) has slightly different
+// // information; write your code to ask different questions via inquirer depending on
+// // employee type.
 
 // HINT: make sure to build out your classes first! Remember that your Manager, Engineer,
 // and Intern classes should all extend from a class named Employee; see the directions
 // for further information. Be sure to test out each class and verify it generates an 
 // object with the correct structure and methods. This structure will be crucial in order
-// for the provided `render` function to work!```
+// for the provided `render` function to work.
