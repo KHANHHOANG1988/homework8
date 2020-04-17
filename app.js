@@ -13,25 +13,45 @@ const render = require("./lib/htmlRenderer");
 ​
 // Write code to use inquirer to gather information about the development team members,
 // and to create objects for each team member (using the correct classes as blueprints!)
+const postion =[];
+const GeneralQuestion= [
+            {            
+            type: "input",
+            message: "Enter the ${postion}'s name:",
+            name: "name"
+        },
+        {
+            type: "number",
+            message: "Enter ${postion}'s ID:",
+            name: "id"
+        },
+        {
+            type: "input",
+            message: "Enter the ${postion}'s email:",
+            name: "email"
+        }
+]
 const NewManager =[];
 function promptManager() {
+    let postion ="Manager";
     return inquirer
         .prompt([
-            {
-                type: "input",
-                message: "Enter the manager's name:",
-                name: "name"
-            },
-            {
-                type: "number",
-                message: "Enter the manager's ID:",
-                name: "id"
-            },
-            {
-                type: "input",
-                message: "Enter the manager's email:",
-                name: "email"
-            },
+            ...GeneralQuestion,
+            // {
+            //     type: "input",
+            //     message: "Enter the manager's name:",
+            //     name: "name"
+            // },
+            // {
+            //     type: "number",
+            //     message: "Enter the manager's ID:",
+            //     name: "id"
+            // },
+            // {
+            //     type: "input",
+            //     message: "Enter the manager's email:",
+            //     name: "email"
+            // },
             {
                 type: "number",
                 message: "Enter the manager's office number:",
@@ -45,21 +65,22 @@ const NewEngineer = [];
 function promptEngineer() {
     return inquirer
         .prompt([
-            {
-                type: "input",
-                message: "Enter the engineer's name:",
-                name: "name"
-            },
-            {
-                type: "number",
-                message: "Enter the engineer's ID:",
-                name: "id"
-            },
-            {
-                type: "input",
-                message: "Enter the engineer's email:",
-                name: "email"
-            },
+            ...GeneralQuestion,
+            // {
+            //     type: "input",
+            //     message: "Enter the engineer's name:",
+            //     name: "name"
+            // },
+            // {
+            //     type: "number",
+            //     message: "Enter the engineer's ID:",
+            //     name: "id"
+            // },
+            // {
+            //     type: "input",
+            //     message: "Enter the engineer's email:",
+            //     name: "email"
+            // },
             {
                 type: "input",
                 message: "Enter the engineer's github username:",
@@ -74,21 +95,22 @@ const NewIntern = [];
 function promptIntern() {        
     return inquirer
         .prompt([
-            {
-                type: "input",
-                message: "Enter the intern's name:",
-                name: "name"
-            },
-            {
-                type: "number",
-                message: "Enter the intern's ID:",
-                name: "id"
-            },
-            {
-                type: "input",
-                message: "Enter the intern's email:",
-                name: "email"
-            },
+            ...GeneralQuestion,
+            // {
+            //     type: "input",
+            //     message: "Enter the intern's name:",
+            //     name: "name"
+            // },
+            // {
+            //     type: "number",
+            //     message: "Enter the intern's ID:",
+            //     name: "id"
+            // },
+            // {
+            //     type: "input",
+            //     message: "Enter the intern's email:",
+            //     name: "email"
+            // },
             {
                 type: "input",
                 message: "Enter the intern's school:",
