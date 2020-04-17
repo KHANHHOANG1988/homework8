@@ -13,7 +13,6 @@ const render = require("./lib/htmlRenderer");
 ​
 // Write code to use inquirer to gather information about the development team members,
 // and to create objects for each team member (using the correct classes as blueprints!)
-const postion =[];
 const GeneralQuestion= [
             {            
             type: "input",
@@ -33,7 +32,7 @@ const GeneralQuestion= [
 ]
 const NewManager =[];
 function promptManager() {
-    let postion ="Manager";
+    let postion ="manager";
     return inquirer
         .prompt([
             ...GeneralQuestion,
@@ -63,6 +62,7 @@ function promptManager() {
 }
 const NewEngineer = [];
 function promptEngineer() {
+    let postion ="engineer";
     return inquirer
         .prompt([
             ...GeneralQuestion,
@@ -92,7 +92,8 @@ function promptEngineer() {
  }
 
 const NewIntern = [];
-function promptIntern() {        
+function promptIntern() {   
+    let postion ="intern";     
     return inquirer
         .prompt([
             ...GeneralQuestion,
@@ -116,8 +117,8 @@ function promptIntern() {
                 message: "Enter the intern's school:",
                 name: "school"
             }
-        ]).then(function ({ name, id, email, imageUrl, school }) {
-            NewIntern.push(new Intern(name, id, email, schoolb));
+        ]).then(function ({ name, id, email, school }) {
+            NewIntern.push(new Intern(name, id, email, school));
         });
  }            
 ​
