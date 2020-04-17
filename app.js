@@ -13,6 +13,7 @@ const render = require("./lib/htmlRenderer");
 ​
 // Write code to use inquirer to gather information about the development team members,
 // and to create objects for each team member (using the correct classes as blueprints!)
+const NewManager =[];
 function promptManager() {
     return inquirer
         .prompt([
@@ -36,8 +37,11 @@ function promptManager() {
                 message: "Enter the manager's office number:",
                 name: "officeNumber"
             }
-        ])
+        ]).then(function ({ name, id, email, github }) {
+            NewManager.push(new Manager(name, id, email, github));
+         });
 }
+const NewEngineer = [];
 function promptEngineer() {
     return inquirer
         .prompt([
@@ -61,9 +65,14 @@ function promptEngineer() {
                 message: "Enter the engineer's github username:",
                 name: "github"
             }
-        ])
+        ]).then(function ({ name, id, email, github }) {
+           NewEngineer.push(new Engineer(name, id, email, github));
+        });
+ }
+
+const NewIntern = [];
 function promptIntern() {        
-return inquirer
+    return inquirer
         .prompt([
             {
                 type: "input",
@@ -85,7 +94,10 @@ return inquirer
                 message: "Enter the intern's school:",
                 name: "school"
             }
-        ])
+        ]).then(function ({ name, id, email, imageUrl, school }) {
+            NewIntern.push(new Intern(name, id, email, schoolb));
+        });
+ }            
 ​
 // After the user has input all employees desired, call the `render` function (required
 // above) and pass in an array containing all employee objects; the `render` function will
@@ -96,6 +108,12 @@ return inquirer
 // `output` folder. You can use the variable `outputPath` above target this location.
 // Hint: you may need to check if the `output` folder exists and create it if it
 // does not.
+fs.writeFile(outputPath, NewTeam, function(err) {
+    if (err) {
+    console.log(err);
+    }
+    console.log("team.html has been created")
+});
 ​
 // HINT: each employee type (manager, engineer, or intern) has slightly different
 // information; write your code to ask different questions via inquirer depending on
