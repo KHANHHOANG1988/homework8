@@ -173,8 +173,8 @@ We would like you to have well over 200 commits by graduation, so commit early a
 * The URL of the GitHub repository
 https://github.com/KHANHHOANG1988/homework8.git
 * GIF of your CLI applications functionality
-https://github.com/KHANHHOANG1988/homework7/blob/master/assets/Gif.gif
-* A screenshot of the generated readme
-https://github.com/KHANHHOANG1988/Homework7/blob/master/assets/homework7.png
+https://github.com/KHANHHOANG1988/homework8/blob/master/assets/Gif.gif
+* A screenshot URL
+https://github.com/KHANHHOANG1988/Homework8/blob/master/assets/homework8.png
 - - -
 © 2019 Trilogy Education Services, a 2U, Inc. brand. All Rights Reserved.
